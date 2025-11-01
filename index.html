@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For My Ifa 💖</title>
+<style>
+  *{box-sizing:border-box;font-family:"Segoe UI",sans-serif;text-align:center}
+  body{margin:0;background:#ffe6f0;overflow:hidden;transition:background 1s}
+  section{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column}
+  section.active{display:flex}
+  h1,h2{color:#d63384;margin:12px 0}
+  button{
+    margin:10px;padding:10px 24px;font-size:18px;border:none;border-radius:10px;
+    background:#ff4da6;color:#fff;cursor:pointer;transition:background .25s;
+  }
+  button:hover{background:#d63384}
+  .image-container{
+    position:relative;width:320px;max-width:80vw;height:400px;
+    display:flex;align-items:center;justify-content:center;margin:0 auto;
+  }
+  .image-container img{
+    position:absolute;width:100%;height:auto;max-height:100%;
+    border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,0.18);
+    opacity:0;transition:opacity 1.5s ease;
+  }
+  .fade-in{opacity:1 !important;}
+  .fade-out{opacity:0 !important;}
+  #message1,#message2{opacity:0;transition:opacity 1s ease;}
+  .text-show{opacity:1 !important;}
+  .petal{
+    position:fixed;top:-5%;font-size:32px;pointer-events:none;
+    animation:petalFall linear forwards;
+  }
+  @keyframes petalFall{
+    0%{transform:translateY(-10vh) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(420deg);opacity:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1️⃣ Ask name -->
+<section id="askName" class="active">
+  <h1>Hey beautiful, what’s your name? 💖</h1>
+  <input id="nameInput" type="text" placeholder="Enter your name"
+         style="padding:10px;font-size:16px;border-radius:8px;border:1px solid #ccc;">
+  <div style="height:12px"></div>
+  <button onclick="checkName()">Continue ❤️</button>
+</section>
+
+<!-- 2️⃣ Sequence -->
+<section id="photoSequence">
+  <div class="image-container">
+    <img id="herPic" src="../her.jpg" alt="Her">
+    <img id="myPic" src="../me.jpg" alt="Me">
+    <img id="usPic" src="../us.jpg" alt="Us">
+  </div>
+  <h2 id="message1">I think we will look perfect together 💕</h2>
+  <h2 id="message2">See? I said it ❤️</h2>
+
+  <!-- 💥 New Shocker Button -->
+  <button id="shockerBtn" style="display:none;" onclick="showProposal()">Shocker 😳</button>
+</section>
+
+<!-- 3️⃣ Proposal -->
+<section id="proposal">
+  <h2>Will you please make me your boyfriend and eventually your husband? 💍</h2>
+  <div>
+    <button onclick="sayYes()">Yes ❤️</button>
+    <button onclick="waitForMe()">Wait for me ⏳</button>
+    <button onclick="sayNo()">No 😢</button>
+  </div>
+  <audio id="marrySong" src="../marry.mp3"></audio>
+</section>
+
+<!-- 4️⃣ Result -->
+<section id="result">
+  <h1 id="resultText"></h1>
+</section>
+
+<script>
+const askName=document.getElementById('askName');
+const photoSequence=document.getElementById('photoSequence');
+const proposal=document.getElementById('proposal');
+const result=document.getElementById('result');
+
+const herPic=document.getElementById('herPic');
+const myPic=document.getElementById('myPic');
+const usPic=document.getElementById('usPic');
+const message1=document.getElementById('message1');
+const message2=document.getElementById('message2');
+const marrySong=document.getElementById('marrySong');
+const resultText=document.getElementById('resultText');
+const shockerBtn=document.getElementById('shockerBtn');
+
+function checkName(){
+  const v=document.getElementById('nameInput').value.trim().toLowerCase();
+  if(v==='arifa'||v==='ifa'){
+    askName.classList.remove('active');
+    photoSequence.classList.add('active');
+    startSequence();
+  } else alert('This page is only for my Ifa 💖');
+}
+
+function startSequence(){
+  herPic.classList.add('fade-in');
+  setTimeout(()=>herPic.classList.remove('fade-in'),3000);
+  setTimeout(()=>herPic.classList.add('fade-out'),3200);
+
+  setTimeout(()=>myPic.classList.add('fade-in'),3500);
+  setTimeout(()=>myPic.classList.remove('fade-in'),6500);
+  setTimeout(()=>myPic.classList.add('fade-out'),6700);
+
+  setTimeout(()=>message1.classList.add('text-show'),7200);
+  setTimeout(()=>message1.classList.remove('text-show'),8800);
+
+  setTimeout(()=>usPic.classList.add('fade-in'),9100);
+  setTimeout(()=>message2.classList.add('text-show'),10700);
+
+  // 💥 Show Shocker button instead of direct proposal
+  setTimeout(()=>{shockerBtn.style.display='inline-block';},12500);
+}
+
+function showProposal(){
+  try{marrySong.currentTime=0;marrySong.play();}catch(e){}
+  photoSequence.classList.remove('active');
+  proposal.classList.add('active');
+}
+
+function sayYes(){
+  try{marrySong.pause();}catch(e){}
+  resultText.innerHTML="She said YES! 💍💖<br>We’re meant to be forever!";
+  result.style.background="url('../us.jpg') center/cover no-repeat";
+  proposal.classList.remove('active');result.classList.add('active');
+  petalShower(30,'🌸');
+}
+function sayNo(){
+  try{marrySong.pause();}catch(e){}
+  resultText.innerHTML="Always be happy Ifa 😢😢😢";
+  proposal.classList.remove('active');result.classList.add('active');
+}
+function waitForMe(){
+  try{marrySong.pause();}catch(e){}
+  resultText.innerHTML="i can wait for you forever my ifuuuuuu";
+  proposal.classList.remove('active');result.classList.add('active');
+  petalShower(20,'❤️');
+}
+function petalShower(count=20,emoji='🌸'){
+  for(let i=0;i<count;i++){
+    const el=document.createElement('div');
+    el.className='petal';el.textContent=emoji;
+    el.style.left=(10+Math.random()*80)+'vw';
+    const dur=(3+Math.random()*3).toFixed(2);
+    el.style.animationDuration=dur+'s';
+    el.style.fontSize=(22+Math.random()*24)+'px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),(parseFloat(dur)+0.5)*1000);
+  }
+}
+</script>
+</body>
+</html>
