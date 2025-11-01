@@ -52,9 +52,9 @@
 <!-- 2️⃣ Sequence -->
 <section id="photoSequence">
   <div class="image-container">
-    <img id="herPic" src="her.jpg" alt="Her">
-    <img id="myPic" src="me.jpg" alt="Me">
-    <img id="usPic" src="us.jpg" alt="Us">
+    <img id="herPic" src="Her.jpg" alt="Her">
+    <img id="myPic" src="Me.jpg" alt="Me">
+    <img id="usPic" src="Us.jpg" alt="Us">
   </div>
   <h2 id="message1">I think we will look perfect together 💕</h2>
   <h2 id="message2">See? I said it ❤️</h2>
@@ -71,7 +71,7 @@
     <button onclick="waitForMe()">Wait for me ⏳</button>
     <button onclick="sayNo()">No 😢</button>
   </div>
-  <audio id="marrySong" src="marry.mp3"></audio>
+  <audio id="marrySong" src="Marry.mp3"></audio>
 </section>
 
 <!-- 4️⃣ Result -->
@@ -131,7 +131,7 @@ function showProposal(){
 function sayYes(){
   try{marrySong.pause();}catch(e){}
   resultText.innerHTML="She said YES! 💍💖<br>We’re meant to be forever!";
-  result.style.background="url('us.jpg') center/cover no-repeat";
+  result.style.background="url('Us.jpg') center/cover no-repeat";
   proposal.classList.remove('active');result.classList.add('active');
   petalShower(30,'🌸');
 }
