@@ -122,27 +122,38 @@ function startSequence(){
   setTimeout(()=>{shockerBtn.style.display='inline-block';},12500);
 }
 
+// 🎶 Fix autoplay issue
+function unlockAudio() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const ctx = new AudioContext();
+  if (ctx.state === 'suspended') {
+    ctx.resume();
+  }
+}
+
 function showProposal(){
-  try{marrySong.currentTime=0;marrySong.play();}catch(e){}
+  unlockAudio(); // ensures music plays properly
+  marrySong.currentTime = 0;
+  marrySong.play().catch(err => console.log('Autoplay prevented:', err));
   photoSequence.classList.remove('active');
   proposal.classList.add('active');
 }
 
 function sayYes(){
-  try{marrySong.pause();}catch(e){}
+  marrySong.pause();
   resultText.innerHTML="She said YES! 💍💖<br>We’re meant to be forever!";
   result.style.background="url('Us.jpg') center/cover no-repeat";
   proposal.classList.remove('active');result.classList.add('active');
   petalShower(30,'🌸');
 }
 function sayNo(){
-  try{marrySong.pause();}catch(e){}
+  marrySong.pause();
   resultText.innerHTML="Always be happy Ifa 😢😢😢";
   proposal.classList.remove('active');result.classList.add('active');
 }
 function waitForMe(){
-  try{marrySong.pause();}catch(e){}
-  resultText.innerHTML="i can wait for you forever my ifuuuuuu";
+  marrySong.pause();
+  resultText.innerHTML="I can wait for you forever my ifuuuuuu 💞";
   proposal.classList.remove('active');result.classList.add('active');
   petalShower(20,'❤️');
 }
